@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app='wordNMeaningApp'>
+  <head>
+    <meta charset='utf-8'>
+    <title>Word 'N' Meaning</title>
+    <link rel='stylesheet' href='css/stylesheet/main.css'>
+    <script type="text/javascript" src="scripts/vendor/angular.js"></script>
+    <script type="text/javascript" src="scripts/vendor/angular-mocks.js"></script>
+    <script type="text/javascript" src="scripts/vendor/jquery-2.1.1.js"></script>
+  </head>
+  <body>
+    <header>This is my application</header>
+    <section ng-controller='wordDefinitionController'>
+      <form ng-controller='wordThesaurusController'>
+        <label for="inputBox">Enter Word Here:</label>
+        <input type='text' id='inputBox' ng-model='query'>
+        <button ng-click=''>Define</button>
+      </form>
+      <div>
+        <button ng-click='definitionSearch()'>Defines</button>
+      </div>
+      <div>
+        <button ng-click='thesaurusSearch()'>Thesaurus</button>
+      </div>
+    </section>
+    <footer></footer>
+    <script type="text/javascript" src='scripts/myScripts/controller.js'></script>
+    <script type="text/javascript" src='scripts/myScripts/app.js'></script>
+  </body>
+</html>

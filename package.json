@@ -1,0 +1,33 @@
+{
+  "name": "WordNMeaning",
+  "version": "1.0.0",
+  "description": "A dictionary application that makes use of two Application Programming Interfaces",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andela-eisaac/WordNMeaning.git"
+  },
+  "keywords": [
+    "word",
+    "meaning",
+    "wordnmeaning"
+  ],
+  "author": "Emmanuel ISAAC",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andela-eisaac/WordNMeaning/issues"
+  },
+  "homepage": "https://github.com/andela-eisaac/WordNMeaning",
+  "devDependencies": {
+    "jasmine-core": "^2.1.3",
+    "karma": "^0.12.28",
+    "karma-chrome-launcher": "^0.1.7",
+    "karma-jasmine": "^0.3.2"
+  }
+}
