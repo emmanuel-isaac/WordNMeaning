@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app='wordNMeaningApp'>
+<html ng-app='appModule'>
   <head>
     <meta charset='utf-8'>
     <title>Word 'N' Meaning</title>
@@ -10,17 +10,17 @@
   </head>
   <body>
     <header>This is my application</header>
-    <section ng-controller='wordDefinitionController'>
-      <form ng-controller='wordThesaurusController'>
+    <section ng-controller='appController'>
+      <form >
         <label for="inputBox">Enter Word Here:</label>
         <input type='text' id='inputBox' ng-model='query'>
-        <button ng-click=''>Define</button>
-      </form>
-      <div>
+        <button ng-click='appFunction()'>Define</button>
         <button ng-click='definitionSearch()'>Defines</button>
-      </div>
-      <div>
         <button ng-click='thesaurusSearch()'>Thesaurus</button>
+      </form>
+      <!--<div ng-controller='wordDefinitionController'></div>-->
+      <div ng-controller='wordThesaurusController'>
+        
       </div>
     </section>
     <footer></footer>
