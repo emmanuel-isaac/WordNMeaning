@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app='appModule'>
+<html ng-app='wordNMeaningApp'>
   <head>
     <meta charset='utf-8'>
     <title>Word 'N' Meaning</title>
@@ -10,18 +10,28 @@
   </head>
   <body>
     <header>This is my application</header>
-    <section ng-controller='appController'>
-      <form >
+    <section>
+      <form>
         <label for="inputBox">Enter Word Here:</label>
         <input type='text' id='inputBox' ng-model='query'>
-        <button ng-click='appFunction()'>Define</button>
-        <button ng-click='definitionSearch()'>Defines</button>
-        <button ng-click='thesaurusSearch()'>Thesaurus</button>
-      </form>
-      <!--<div ng-controller='wordDefinitionController'></div>-->
-      <div ng-controller='wordThesaurusController'>
-        
+      </form> 
+      <div id='container'>
+        <div class="Definition" ng-controller='wordDefinitionController'>  
+          <button ng-click='definitionSearch()'>Definition</button>
+          <dl>
+            <dt ng-bind='wordResponses[0].word'></dt>
+            <dd ng-repeat='wordResponse in wordResponses'>
+              <p>
+                <span ng-bind='wordResponse.text'></span><br>
+                <span ng-bind='wordResponse.attributionText'></span>
+              </p>
+            </dd>
+          </dl>
+        </div>
+      <div class="Thesaurus">
+        <button ng-controller='wordThesaurusController' ng-click='thesaurusSearch(query)'>Thesaurus</button></div>
       </div>
+
     </section>
     <footer></footer>
     <script type="text/javascript" src='scripts/myScripts/controller.js'></script>

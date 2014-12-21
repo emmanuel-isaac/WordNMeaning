@@ -4,13 +4,14 @@ var wordNMeaningApp = angular.module('wordNMeaningApp', []);
 
 wordNMeaningApp.controller('wordDefinitionController', ['$scope', '$http', function (scope, http) {
 
-  scope.returnDefinitionUrl = function () {
+  scope.returnDefinitionUrl = function (query) { 
+    console.log(scope.query);
     var definitionUrl = 'http://api.wordnik.com:80/v4/word.json/'+ scope.query + '/definitions/';
-    return definitionUrl; 
+    console.log(definitionUrl);
+    return definitionUrl;
   };
 
   scope.definitionSearch = function () {
-    console.log(scope.query);
 
     http({
       url: scope.returnDefinitionUrl(),
@@ -24,8 +25,8 @@ wordNMeaningApp.controller('wordDefinitionController', ['$scope', '$http', funct
     }).
     success(function (response) {
 
-      scope.wordResponse = response;
-      console.log(scope.wordResponse);
+      scope.wordResponses = response;
+      console.log(scope.wordResponses);
     });
   };    
 }]);
@@ -33,13 +34,25 @@ wordNMeaningApp.controller('wordDefinitionController', ['$scope', '$http', funct
 
 wordNMeaningApp.controller('wordThesaurusController', ['$scope', '$http', function (scope, http) {
 
-  scope.thesaurusSearch = function () {
+  scope.returnThesaurusUrl = function (query) { 
     console.log(scope.query);
-    http({url: 'http://words.bighugelabs.com/api/2/f5c79d25e5e8f8723ee62b695a8a7987/match/json', method: 'GET'}).
+    var thesaurusUrl = 'http://words.bighugelabs.com/api/2/f5c79d25e5e8f8723ee62b695a8a7987/' + scope.query + '/json';
+    console.log(thesaurusUrl);
+    return thesaurusUrl;
+  };
 
+  scope.thesaurusSearch = function () {
+    http({
+
+      url: scope.returnThesaurusUrl(),
+      method: 'GET'
+
+    }).
     success(function (response) {
+
       scope.thesaurus = response;
       console.log(scope.thesaurus);
+
     });
   };  
 }]);
