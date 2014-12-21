@@ -62,6 +62,10 @@ wordNMeaningApp.controller('wordThesaurusController', ['$scope', '$http', functi
               scope.nounSynonym = value;
               console.log(scope.nounSynonym);
             }
+            else {
+              scope.nounAntonym = value;
+              console.log(scope.nounAntonym);
+            }
           });
         } 
         else if (key == 'verb') {
@@ -71,6 +75,10 @@ wordNMeaningApp.controller('wordThesaurusController', ['$scope', '$http', functi
               scope.verbSynonym = value;
               console.log(scope.verbSynonym);
             }
+            else {
+              scope.verbAntonym = value;
+              console.log(scope.verbAntonym);
+            }
           });
         }
         else if (key == 'adverb') {
@@ -79,6 +87,15 @@ wordNMeaningApp.controller('wordThesaurusController', ['$scope', '$http', functi
             if (key == 'syn') {
               scope.adverbSynonym = value;
               console.log(scope.adverbSynonym);
+            }
+          });
+        }
+        else if (key == 'adjective') {
+          scope.adjectiveThesaurus = value;
+          angular.forEach(scope.adjectiveThesaurus, function(value, key) {
+            if (key == 'syn' || key == 'rel') {
+              scope.adjectiveSynonym = value;
+              console.log(scope.adjectiveSynonym);
             }
           });
         }
