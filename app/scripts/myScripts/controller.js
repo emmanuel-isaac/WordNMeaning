@@ -17,7 +17,7 @@ wordNMeaningApp.controller('wordDefinitionController', ['$scope', '$http', funct
       url: scope.returnDefinitionUrl(),
       method: 'GET',
       params: {
-        limit: 7,
+        limit: 6,
         includeRelated: 'true',
         sourceDictionaries: 'all',
         api_key: '724583fdf72680c36d0010ad78b03b1c4f3ea7b27c651f094'
@@ -43,6 +43,9 @@ wordNMeaningApp.controller('wordThesaurusController', ['$scope', '$http', functi
   };
 
   scope.thesaurusSearch = function () {
+
+    $('table').show();
+
     http({
 
       url: scope.returnThesaurusUrl(),
@@ -88,6 +91,10 @@ wordNMeaningApp.controller('wordThesaurusController', ['$scope', '$http', functi
               scope.adverbSynonym = value;
               console.log(scope.adverbSynonym);
             }
+            else {
+              scope.adverbAntonym = value;
+              console.log(scope.adverbAntonym);
+            }
           });
         }
         else if (key == 'adjective') {
@@ -97,37 +104,38 @@ wordNMeaningApp.controller('wordThesaurusController', ['$scope', '$http', functi
               scope.adjectiveSynonym = value;
               console.log(scope.adjectiveSynonym);
             }
+            else if (key == 'ant') {
+              scope.adjectiveAntonym = value;
+              console.log(scope.adjectiveAntonym);
+            }
           });
         }
+
+        if (!scope.thesaurus.hasOwnProperty('noun')) {
+          $('.noun').hide();
+        } else {
+          $('.noun').show();
+        }
+
+        if (!scope.thesaurus.hasOwnProperty('verb')) {
+          $('.verb').hide();
+        } else {
+          $('.verb').show();
+        }
+
+        if (!scope.thesaurus.hasOwnProperty('adverb')) {
+          $('.adverb').hide();
+        } else {
+          $('.adverb').show();
+        }
+
+        if (!scope.thesaurus.hasOwnProperty('adjective')) {
+          $('.adjective').hide();
+        } else {
+          $('.adjective').show();
+        }
       });
-
-      // angular.forEach(scope.thesaurus, function(value, key) {
-      //   console.log(value);
-      //   scope.synonym = value;
-
-      //   angular.forEach(scope.synonym, function (value, key) {
-      //     console.log(value);
-      //     this.push(value);
-      //   }, scope.synonymValue);
-      // }, scope.log);
-
-      // console.log(scope.log);
-
-      // var values = {name: 'misko', gender: 'male'};
-// var log = [];
-// angular.forEach(values, function(value, key) {
-//   this.push(key + ': ' + value);
-// }, log);
-// expect(log).toEqual(['name: misko', 'gender: male']);
-      // console.log(response);
-      // console.log(scope.synonymValue);
-
-      // angular.forEach(scope.synonymValue, function(value, key) {});
-
     });
-
-
-
   };  
 }]);
 

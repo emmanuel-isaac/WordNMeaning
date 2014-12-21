@@ -1,1 +1,3 @@
 'use strict';
+
+$('table').hide();

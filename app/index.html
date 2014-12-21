@@ -3,24 +3,27 @@
   <head>
     <meta charset='utf-8'>
     <title>Word 'N' Meaning</title>
+    <link rel="stylesheet" type="text/css" href='css/vendor/bootstrap.css'>
     <link rel='stylesheet' href='css/stylesheet/main.css'>
     <script type="text/javascript" src="scripts/vendor/angular.js"></script>
     <script type="text/javascript" src="scripts/vendor/angular-mocks.js"></script>
     <script type="text/javascript" src="scripts/vendor/jquery-2.1.1.js"></script>
   </head>
   <body>
-    <header>This is my application</header>
+    <header>
+      <h1>Word 'N' Meaning</h1>
+    </header>
     <section >
       <form>
-        <label for="inputBox">Enter Word Here:</label>
+        <label for="inputBox">Enter Word Here:</label><br>
         <input type='text' id='inputBox' ng-model='query'>
       </form> 
       <div id='container'>
         <div class="Definition" ng-controller='wordDefinitionController'>  
-          <button ng-click='definitionSearch()'>Definition</button>
+          <button ng-click='definitionSearch()' class='definitionButton'>Definition</button>
           <dl>
-            <dt ng-bind='wordResponses[0].word'></dt>
-            <dd ng-repeat='wordResponse in wordResponses'>
+            <dt><h3 ng-bind='wordResponses[0].word'></h3></dt>
+            <dd ng-repeat='wordResponse in wordResponses' class='definitions'>
               <p>
                 <span ng-bind='wordResponse.text'></span><br>
                 <span ng-bind='wordResponse.attributionText'></span>
@@ -29,17 +32,41 @@
           </dl>
         </div>
         <div ng-controller='wordThesaurusController' class="Thesaurus">
-          <button  ng-click='thesaurusSearch(query)'>Thesaurus</button>
-          <p>Noun Synonym: <span ng-repeat='synonym in nounSynonym'>{{synonym}}, </span></p>
-          <p>Verb Synonym: <span ng-repeat='synonym in verbSynonym'>{{synonym}}, </span></p>
-          <p>Adverb Synonym: <span ng-repeat='synonym in adverbSynonym'>{{synonym}}, </span></p>
-          <p>Adjective Synonym: <span ng-repeat='synonym in adjectiveSynonym'>{{synonym}}, </span></p>
-          <p>Verb Antonym: <span ng-repeat='antonym in verbAntonym'>{{antonym}}, </span></p>
+          <button  ng-click='thesaurusSearch(query)' class='thesaurusButton'>Thesaurus</button>
+
+          <table class='table table-bordered table-hover table-responsive table-condensed'>
+            <tr>
+              <th>Part Of Speech</th>
+              <th class='synonym'>Synonym</th>
+              <th>Antonym</th>
+            </tr>
+            <tr class='noun'>
+              <td>Noun</td>
+              <td><span ng-repeat='synonym in nounSynonym'>{{synonym}}, </span></td>
+              <td><span ng-repeat='antonym in nounAntonym'>{{antonym}}, </span></td>
+            </tr>
+            <tr class='verb'>
+              <td>Verb</td>
+              <td><span ng-repeat='synonym in verbSynonym'>{{synonym}}, </span></td>
+              <td><span ng-repeat='antonym in verbAntonym'>{{antonym}}, </span></td>
+            </tr>
+            <tr class='adverb'>
+              <td>Adverb</td>
+              <td><span ng-repeat='synonym in adverbSynonym'>{{synonym}}, </span></td>
+              <td><span ng-repeat='antonym in adverbAntonym'>{{antonym}}, </span></td>
+            </tr>
+            <tr class='adjective'>
+              <td>Adjective</td>
+              <td><span ng-repeat='synonym in adjectiveSynonym'>{{synonym}}, </span></td>
+              <td><span ng-repeat='antonym in adjectiveAntonym'>{{antonym}}, </span></td>
+            </tr>
+          </table>
+
         </div>
       </div>
 
     </section>
-    <footer></footer>
+    <footer>Emmanuel</footer>
     <script type="text/javascript" src='scripts/myScripts/controller.js'></script>
     <script type="text/javascript" src='scripts/myScripts/app.js'></script>
   </body>
