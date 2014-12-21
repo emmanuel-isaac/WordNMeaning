@@ -10,7 +10,7 @@
   </head>
   <body>
     <header>This is my application</header>
-    <section>
+    <section >
       <form>
         <label for="inputBox">Enter Word Here:</label>
         <input type='text' id='inputBox' ng-model='query'>
@@ -28,8 +28,11 @@
             </dd>
           </dl>
         </div>
-      <div class="Thesaurus">
-        <button ng-controller='wordThesaurusController' ng-click='thesaurusSearch(query)'>Thesaurus</button></div>
+        <div ng-controller='wordThesaurusController' class="Thesaurus">
+          <button  ng-click='thesaurusSearch(query)'>Thesaurus</button>
+          <p>Noun Synonym: <span ng-repeat='synonym in nounSynonym'>{{synonym}}, </span></p>
+          <p>Verb Synonym: <span ng-repeat='synonym in verbSynonym'>{{synonym}}, </span></p>
+        </div>
       </div>
 
     </section>
