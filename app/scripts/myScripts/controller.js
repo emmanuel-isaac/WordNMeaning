@@ -1,20 +1,21 @@
 'use strict';
 
-var wordNMeaningApp = angular.module('wordNMeaningApp', []);
+$('table').hide();
 
-wordNMeaningApp.controller('wordDefinitionController', ['$scope', '$http', function (scope, http) {
+var appModule = angular.module('appModule', []);
 
-  scope.returnDefinitionUrl = function (query) { 
-    console.log(scope.query);
-    var definitionUrl = 'http://api.wordnik.com:80/v4/word.json/'+ scope.query + '/definitions/';
+appModule.factory('sendDefinitionRequest', ['$http', function(http) {
+
+  var returnDefinitionUrl = function (query) { 
+    console.log(query);
+    var definitionUrl = 'http://api.wordnik.com:80/v4/word.json/'+ query + '/definitions/';
     console.log(definitionUrl);
     return definitionUrl;
   };
 
-  scope.definitionSearch = function () {
-
-    http({
-      url: scope.returnDefinitionUrl(),
+  var requestFactory = function(query) {
+    return http({
+      url: returnDefinitionUrl(query),
       method: 'GET',
       params: {
         limit: 6,
@@ -22,40 +23,42 @@ wordNMeaningApp.controller('wordDefinitionController', ['$scope', '$http', funct
         sourceDictionaries: 'all',
         api_key: '724583fdf72680c36d0010ad78b03b1c4f3ea7b27c651f094'
       }
-    }).
-    success(function (response) {
-
-      scope.wordResponses = response;
-      console.log(scope.wordResponses);
     });
-  };    
+    
+  };
+  return requestFactory;
 }]);
 
+appModule.factory('sendThesaurusRequest', ['$http', function(http) {
 
-wordNMeaningApp.controller('wordThesaurusController', ['$scope', '$http', function (scope, http) {
-
-
-  scope.returnThesaurusUrl = function (query) { 
-    console.log(scope.query);
-    var thesaurusUrl = 'http://words.bighugelabs.com/api/2/f5c79d25e5e8f8723ee62b695a8a7987/' + scope.query + '/json';
+  var returnThesaurusUrl = function (query) { 
+    console.log(query);
+    var thesaurusUrl = 'http://words.bighugelabs.com/api/2/f5c79d25e5e8f8723ee62b695a8a7987/' + query + '/json';
     console.log(thesaurusUrl);
     return thesaurusUrl;
   };
 
-  scope.thesaurusSearch = function () {
-
-    $('table').show();
-
-    http({
-
-      url: scope.returnThesaurusUrl(),
+  var requestFactory = function(query) {
+    return http({
+      url: returnThesaurusUrl(query),
       method: 'GET'
+    });
+  };
+  return requestFactory;
+}]);
 
-    }).
-    success(function (response) {
+appModule.controller('definitionAndThesaurus', ['$scope', 'sendDefinitionRequest', 'sendThesaurusRequest', function(scope, sendDefinitionRequest, sendThesaurusRequest) {
+    scope.definitionSearch = function() {
+      sendDefinitionRequest(scope.query).success(function(response) {
+      scope.wordResponses = response;
+      console.log(scope.wordResponses);
+    });
+    };
 
-      scope.thesaurus = response;
-      console.log(scope.thesaurus);
+    scope.thesaurusSearch = function() {
+      sendThesaurusRequest(scope.query).success(function(response) {
+        scope.thesaurus = response;
+        console.log(scope.thesaurus);
 
       angular.forEach(scope.thesaurus, function (value, key) {
         if (key == 'noun') {
@@ -135,22 +138,12 @@ wordNMeaningApp.controller('wordThesaurusController', ['$scope', '$http', functi
           $('.adjective').show();
         }
       });
-    });
-  };  
+      });
+    };
+
+    scope.search = function() {
+      scope.definitionSearch();
+      scope.thesaurusSearch();
+      $('table').show();
+    };
 }]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

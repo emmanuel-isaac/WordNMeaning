@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app='wordNMeaningApp'>
+<html ng-app='appModule'>
   <head>
     <meta charset='utf-8'>
     <title>Word 'N' Meaning</title>
@@ -13,14 +13,14 @@
     <header>
       <h1>Word 'N' Meaning</h1>
     </header>
-    <section >
+    <section ng-controller='definitionAndThesaurus' >
       <form>
         <label for="inputBox">Enter Word Here:</label><br>
-        <input type='text' id='inputBox' ng-model='query'>
+        <input type='text' id='inputBox' ng-model='query'><br>
+        <button ng-click='search()'>Definition & Thesaurus</button>
       </form> 
       <div id='container'>
-        <div class="Definition" ng-controller='wordDefinitionController'>  
-          <button ng-click='definitionSearch()' class='definitionButton'>Definition</button>
+        <div class="Definition">
           <dl>
             <dt><h3 ng-bind='wordResponses[0].word'></h3></dt>
             <dd ng-repeat='wordResponse in wordResponses' class='definitions'>
@@ -31,13 +31,11 @@
             </dd>
           </dl>
         </div>
-        <div ng-controller='wordThesaurusController' class="Thesaurus">
-          <button  ng-click='thesaurusSearch(query)' class='thesaurusButton'>Thesaurus</button>
-
+        <div class="Thesaurus">
           <table class='table table-bordered table-hover table-responsive table-condensed'>
             <tr>
               <th>Part Of Speech</th>
-              <th class='synonym'>Synonym</th>
+              <th>Synonym</th>
               <th>Antonym</th>
             </tr>
             <tr class='noun'>
