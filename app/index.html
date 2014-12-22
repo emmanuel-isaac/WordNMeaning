@@ -5,6 +5,8 @@
     <title>Word 'N' Meaning</title>
     <link rel="stylesheet" type="text/css" href='css/vendor/bootstrap.css'>
     <link rel='stylesheet' href='css/stylesheet/main.css'>
+    <link href='http://fonts.googleapis.com/css?family=Yellowtail' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="scripts/vendor/angular.js"></script>
     <script type="text/javascript" src="scripts/vendor/angular-mocks.js"></script>
     <script type="text/javascript" src="scripts/vendor/jquery-2.1.1.js"></script>
@@ -17,7 +19,8 @@
       <form>
         <label for="inputBox">Enter Word Here:</label><br>
         <input type='text' id='inputBox' ng-model='query'><br>
-        <button ng-click='search()'>Definition & Thesaurus</button>
+        <button ng-click='search()'>DEFINITION--THESAURUS</button>
+        <p class='alert'>Please make a valid entry</p>
       </form> 
       <div id='container'>
         <div class="Definition">
@@ -26,13 +29,13 @@
             <dd ng-repeat='wordResponse in wordResponses' class='definitions'>
               <p>
                 <span ng-bind='wordResponse.text'></span><br>
-                <span ng-bind='wordResponse.attributionText'></span>
+                <span ng-bind='wordResponse.attributionText' class='attribution'></span>
               </p>
             </dd>
           </dl>
         </div>
         <div class="Thesaurus">
-          <table class='table table-bordered table-hover table-responsive table-condensed'>
+          <table class='table table-bordered table-condensed'>
             <tr>
               <th>Part Of Speech</th>
               <th>Synonym</th>
@@ -64,8 +67,8 @@
       </div>
 
     </section>
-    <footer>Emmanuel</footer>
-    <script type="text/javascript" src='scripts/myScripts/controller.js'></script>
+    <footer>&copy 2014 Emmanuel Isaac</footer>
     <script type="text/javascript" src='scripts/myScripts/app.js'></script>
+    <script type="text/javascript" src='scripts/myScripts/controller.js'></script>
   </body>
 </html>

@@ -2,8 +2,10 @@
 
 $('table').hide();
 
+// APPLICATION MODULE
 var appModule = angular.module('appModule', []);
 
+// DEFINITION REQUEST FACTORY
 appModule.factory('sendDefinitionRequest', ['$http', function(http) {
 
   var returnDefinitionUrl = function (query) { 
@@ -29,6 +31,7 @@ appModule.factory('sendDefinitionRequest', ['$http', function(http) {
   return requestFactory;
 }]);
 
+// THESAURUS REQUEST FACTORY
 appModule.factory('sendThesaurusRequest', ['$http', function(http) {
 
   var returnThesaurusUrl = function (query) { 
@@ -47,20 +50,27 @@ appModule.factory('sendThesaurusRequest', ['$http', function(http) {
   return requestFactory;
 }]);
 
+
+// APPLICATION CONTROLLER 
 appModule.controller('definitionAndThesaurus', ['$scope', 'sendDefinitionRequest', 'sendThesaurusRequest', function(scope, sendDefinitionRequest, sendThesaurusRequest) {
     scope.definitionSearch = function() {
-      sendDefinitionRequest(scope.query).success(function(response) {
+      sendDefinitionRequest(angular.lowercase(scope.query)).success(function(response) {
       scope.wordResponses = response;
       console.log(scope.wordResponses);
+      $('img').hide();
+      $('.Definition').show();
+      $('.Thesaurus').show();
     });
     };
 
     scope.thesaurusSearch = function() {
       sendThesaurusRequest(scope.query).success(function(response) {
         scope.thesaurus = response;
+        $('img').hide();
         console.log(scope.thesaurus);
 
       angular.forEach(scope.thesaurus, function (value, key) {
+
         if (key == 'noun') {
           scope.nounThesaurus = value;
           angular.forEach(scope.nounThesaurus, function (value, key) {
@@ -74,7 +84,7 @@ appModule.controller('definitionAndThesaurus', ['$scope', 'sendDefinitionRequest
             }
           });
         } 
-        else if (key == 'verb') {
+        if (key == 'verb') {
           scope.verbThesaurus = value;
           angular.forEach(scope.verbThesaurus, function(value, key) {
             if (key == 'syn') {
@@ -142,8 +152,16 @@ appModule.controller('definitionAndThesaurus', ['$scope', 'sendDefinitionRequest
     };
 
     scope.search = function() {
-      scope.definitionSearch();
-      scope.thesaurusSearch();
-      $('table').show();
+      if(scope.query.trim() !== '') {
+        $('img').show();
+        $('.alert').hide();
+        scope.definitionSearch();
+        scope.thesaurusSearch();
+        $('table').show();
+      } else {
+        $('.alert').show();
+        $('.Definition').hide();
+        $('.Thesaurus').hide();
+      } 
     };
 }]);
