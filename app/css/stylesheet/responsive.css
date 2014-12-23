@@ -1,5 +1,9 @@
 @media screen and (max-width: 900px) {
 
+  body {
+    width: 100%;
+  }
+
   header {
     text-align: center;
   }
