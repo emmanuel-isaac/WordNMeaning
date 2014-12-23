@@ -20,7 +20,7 @@ header {
   border-bottom: #fff 5px solid;
   margin: 0 0 30px -10px;
   padding-left: 20px;
-  font-family: Yellowtail;
+  font-family: Yellowtail, sans-serif;
   color: hsl(30, 75%, 30%);
 }
 
@@ -94,7 +94,7 @@ button {
   padding: auto 30px;
   font-size: 1.3em;
   color: #fff;
-  font-family: Yellowtail;
+  font-family: Yellowtail, sans-serif;
 }
 
 button:hover {
@@ -122,7 +122,7 @@ footer {
   bottom: 0;
   text-align: center;
   padding-top: 15px;
-  font-family: Yellowtail;
+  font-family: Yellowtail, sans-serif;
   font-size: 1.3em;
   word-spacing: 10px;
   color: #fff;

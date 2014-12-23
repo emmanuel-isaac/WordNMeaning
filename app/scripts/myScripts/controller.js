@@ -51,9 +51,9 @@ appModule.factory('sendThesaurusRequest', ['$http', function (http) {
 
 
 // APPLICATION CONTROLLER 
-appModule.controller('definitionAndThesaurus', ['$scope', 'sendDefinitionRequest', 'sendThesaurusRequest', function (scope, sendDefinitionRequest, sendThesaurusRequest) {
+appModule.controller('definitionAndThesaurusController', ['$scope', 'sendDefinitionRequest', 'sendThesaurusRequest', function (scope, sendDefinitionRequest, sendThesaurusRequest) {
 
-    // THE DEFINITION FUNCTION
+  // THE DEFINITION FUNCTION
   scope.definitionSearch = function () {
 
     sendDefinitionRequest(angular.lowercase(scope.query)).
@@ -73,8 +73,8 @@ appModule.controller('definitionAndThesaurus', ['$scope', 'sendDefinitionRequest
     sendThesaurusRequest(scope.query).success(function (response) {
 
       scope.thesaurus = response;
-      console.log(scope.thesaurus);
       $('img').hide();
+      $('table').show();
       $('.responseAlert').hide();
 
       // DETERMINES THE PART OF SPEECH A WORD BELONGS TO
@@ -159,7 +159,7 @@ appModule.controller('definitionAndThesaurus', ['$scope', 'sendDefinitionRequest
         $('.alert').hide();
         scope.definitionSearch();
         scope.thesaurusSearch();
-        $('table').show();
+        // $('table').show();
       } else {
         $('.alert').show();
         $('.Definition').hide();
