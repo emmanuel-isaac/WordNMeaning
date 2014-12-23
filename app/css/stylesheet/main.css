@@ -51,12 +51,12 @@ input {
 }
 
 .Definition {
-  width: 40%;
+  width: 35%;
   margin-left: 3%;
 }
 
 .Thesaurus {
-  width: 50%;
+  width: 55%;
   float: right;
   margin-right: 3%;
 }
@@ -86,21 +86,21 @@ input:focus {
 }
 
 button {
-  width: 25%;
-  height: 50px;
+  width: 27%;
+  height: 55px;
   border-radius: 5px;
   background-color: green;
   border: none;
   padding: auto 30px;
-  font-size: 1.1em;
+  font-size: 1.3em;
   color: #fff;
-  font-family: 'Droid Serif';
+  font-family: Yellowtail;
 }
 
 button:hover {
-  width: 25.5%;
-  height: 52px;
-  border-color: white;
+  width: 27.5%;
+  height: 57px;
+  border: 3px white solid;
   color: #fff;
 }
 
@@ -133,4 +133,10 @@ footer {
   width: 20%;
   height: 20%;
   margin: 0 auto 0 40%;
+  opacity: 0.5;
 }
+
+.responseAlert {
+  margin-top: 30px;
+}
+

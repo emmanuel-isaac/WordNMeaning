@@ -53,22 +53,31 @@ appModule.factory('sendThesaurusRequest', ['$http', function(http) {
 
 // APPLICATION CONTROLLER 
 appModule.controller('definitionAndThesaurus', ['$scope', 'sendDefinitionRequest', 'sendThesaurusRequest', function(scope, sendDefinitionRequest, sendThesaurusRequest) {
+
+    // THE DEFINITION FUNCTION
     scope.definitionSearch = function() {
-      sendDefinitionRequest(angular.lowercase(scope.query)).success(function(response) {
-      scope.wordResponses = response;
-      console.log(scope.wordResponses);
-      $('img').hide();
-      $('.Definition').show();
-      $('.Thesaurus').show();
-    });
+
+      sendDefinitionRequest(angular.lowercase(scope.query)).
+      success(function(response) {
+        scope.wordResponses = response;
+        $('img').hide();
+        $('.Definition').show();
+        $('.Thesaurus').show();
+    }).
+      error(function(data, status, headers, config) {
+        $('.responseAlert').show();
+      });;
     };
 
+    // THE THESAURUS FUNCTION
     scope.thesaurusSearch = function() {
       sendThesaurusRequest(scope.query).success(function(response) {
+
         scope.thesaurus = response;
         $('img').hide();
-        console.log(scope.thesaurus);
 
+      // DETERMINES THE PART OF SPEECH A WORD BELONGS TO
+      // ITERATION OVER KEYS AND VALUES IN RESPONSE -- SCOPE.THESAURUS
       angular.forEach(scope.thesaurus, function (value, key) {
 
         if (key == 'noun') {
@@ -76,24 +85,20 @@ appModule.controller('definitionAndThesaurus', ['$scope', 'sendDefinitionRequest
           angular.forEach(scope.nounThesaurus, function (value, key) {
             if (key == 'syn') {
               scope.nounSynonym = value;
-              console.log(scope.nounSynonym);
             }
             else {
               scope.nounAntonym = value;
-              console.log(scope.nounAntonym);
             }
           });
-        } 
-        if (key == 'verb') {
+        }
+        else if (key == 'verb') {
           scope.verbThesaurus = value;
           angular.forEach(scope.verbThesaurus, function(value, key) {
             if (key == 'syn') {
               scope.verbSynonym = value;
-              console.log(scope.verbSynonym);
             }
             else {
               scope.verbAntonym = value;
-              console.log(scope.verbAntonym);
             }
           });
         }
@@ -102,11 +107,9 @@ appModule.controller('definitionAndThesaurus', ['$scope', 'sendDefinitionRequest
           angular.forEach(scope.adverbThesaurus, function(value, key) {
             if (key == 'syn') {
               scope.adverbSynonym = value;
-              console.log(scope.adverbSynonym);
             }
             else {
               scope.adverbAntonym = value;
-              console.log(scope.adverbAntonym);
             }
           });
         }
@@ -115,15 +118,15 @@ appModule.controller('definitionAndThesaurus', ['$scope', 'sendDefinitionRequest
           angular.forEach(scope.adjectiveThesaurus, function(value, key) {
             if (key == 'syn' || key == 'rel') {
               scope.adjectiveSynonym = value;
-              console.log(scope.adjectiveSynonym);
             }
             else if (key == 'ant') {
               scope.adjectiveAntonym = value;
-              console.log(scope.adjectiveAntonym);
             }
           });
         }
 
+
+        // REMOVING EMPTY PART OF SPEECH COLUMNS ON WORD SEARCH
         if (!scope.thesaurus.hasOwnProperty('noun')) {
           $('.noun').hide();
         } else {
@@ -148,9 +151,14 @@ appModule.controller('definitionAndThesaurus', ['$scope', 'sendDefinitionRequest
           $('.adjective').show();
         }
       });
+      }).error(function(data, status, headers, config) {
+        console.log(status);
+        $('table').hide();
+        $('.responseAlert').show();
       });
     };
 
+    // TRIGGERS DEFINITION AND THESAURUS SEARCH ON THE CLICK OF ONE BUTTON
     scope.search = function() {
       if(scope.query.trim() !== '') {
         $('img').show();

@@ -19,8 +19,9 @@
       <form>
         <label for="inputBox">Enter Word Here:</label><br>
         <input type='text' id='inputBox' ng-model='query'><br>
-        <button ng-click='search()'>DEFINITION--THESAURUS</button>
-        <p class='alert'>Please make a valid entry</p>
+        <button ng-click='search()'>Definition--Thesaurus</button>
+        <p class='alert'>Please, enter a word</p>
+        <p class='responseAlert'>Word not in database || Network error</p>
       </form> 
       <div id='container'>
         <div class="Definition">
@@ -35,7 +36,7 @@
           </dl>
         </div>
         <div class="Thesaurus">
-          <table class='table table-bordered table-condensed'>
+          <table class='table table-bordered table-condensed table-responsive'>
             <tr>
               <th>Part Of Speech</th>
               <th>Synonym</th>
