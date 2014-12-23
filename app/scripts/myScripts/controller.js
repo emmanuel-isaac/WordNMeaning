@@ -75,6 +75,7 @@ appModule.controller('definitionAndThesaurus', ['$scope', 'sendDefinitionRequest
 
         scope.thesaurus = response;
         $('img').hide();
+        $('.responseAlert').hide();
 
       // DETERMINES THE PART OF SPEECH A WORD BELONGS TO
       // ITERATION OVER KEYS AND VALUES IN RESPONSE -- SCOPE.THESAURUS
