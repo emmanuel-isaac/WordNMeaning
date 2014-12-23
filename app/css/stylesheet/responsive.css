@@ -16,6 +16,8 @@
     margin: 20px auto;
     text-align: center;
     padding: 5px auto;
+    position: relative;
+    right: -2%;
   }
 
   input {
