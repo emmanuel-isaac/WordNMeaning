@@ -126,6 +126,7 @@ footer {
   font-size: 1.3em;
   word-spacing: 10px;
   color: #fff;
+  border-top: 2px white solid;
 }
 
 .loadingDef,

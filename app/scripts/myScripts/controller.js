@@ -73,6 +73,7 @@ appModule.controller('definitionAndThesaurus', ['$scope', 'sendDefinitionRequest
     sendThesaurusRequest(scope.query).success(function (response) {
 
       scope.thesaurus = response;
+      console.log(scope.thesaurus);
       $('img').hide();
       $('.responseAlert').hide();
 
