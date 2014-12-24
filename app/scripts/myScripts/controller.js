@@ -50,6 +50,7 @@ appModule.factory('sendThesaurusRequest', ['$http', function (http) {
 }]);
 
 
+
 // APPLICATION CONTROLLER 
 appModule.controller('definitionAndThesaurusController', ['$scope', 'sendDefinitionRequest', 'sendThesaurusRequest', function (scope, sendDefinitionRequest, sendThesaurusRequest) {
 
@@ -159,7 +160,6 @@ appModule.controller('definitionAndThesaurusController', ['$scope', 'sendDefinit
         $('.alert').hide();
         scope.definitionSearch();
         scope.thesaurusSearch();
-        // $('table').show();
       } else {
         $('.alert').show();
         $('.Definition').hide();
