@@ -60,13 +60,15 @@ appModule.controller('definitionAndThesaurusController', ['$scope', 'sendDefinit
     sendDefinitionRequest(angular.lowercase(scope.query)).
     success(function (response) {
       scope.wordResponses = response;
-      scope.definitionTitle = angular.uppercase(response[0].word);
+      scope.definitionTitle = angular.uppercase(scope.wordResponses[0].word);
       $('img').hide();
       $('.Definition').show();
       $('.Thesaurus').show();
     }).
     error(function (data, status) {
       $('.responseAlert').show();
+      $('img').hide();
+      $('.definitions').hide();
     });
   }; // ENDS scope.definitionSearch
 
@@ -151,6 +153,7 @@ appModule.controller('definitionAndThesaurusController', ['$scope', 'sendDefinit
       console.log(status);
       $('table').hide();
       $('.responseAlert').show();
+      $('img').hide();
     });
   };
 
