@@ -27,7 +27,7 @@
       <div id='container'>
         <div class="Definition">
           <dl>
-            <dt><h3 ng-bind='wordResponses[0].word'></h3></dt>
+            <dt ng-bind='definitionTitle'></dt>
             <dd ng-repeat='wordResponse in wordResponses' class='definitions'>
               <p>
                 <span ng-bind='wordResponse.text'></span><br>
@@ -39,35 +39,49 @@
         <div class="Thesaurus">
           <table class='table table-bordered table-condensed table-responsive'>
             <tr>
-              <th>Part Of Speech</th>
+              <th>Part(s) Of Speech</th>
               <th>Synonym(s)</th>
               <th>Antonym(s)</th>
             </tr>
             <tr class='noun'>
-              <td>Noun</td>
+              <td>
+                <a href="http://en.wikipedia.org/wiki/Noun">
+                  Noun<br><span class="partOfSpeechInfo">For more on Nouns, <br>click here</span>
+                </a>
+              </td>
               <td class='thesBody'><span ng-repeat='synonym in nounSynonym'>{{synonym}}, </span></td>
               <td class='thesBody'><span ng-repeat='antonym in nounAntonym'>{{antonym}}, </span></td>
             </tr>
             <tr class='verb'>
-              <td>Verb</td>
+              <td>
+                <a href="http://en.wikipedia.org/wiki/Verb">
+                  Verb<br><span class="partOfSpeechInfo">For more on Verbs, <br>click here</span>
+                </a>
+              </td>
               <td class='thesBody'><span ng-repeat='synonym in verbSynonym'>{{synonym}}, </span></td>
               <td class='thesBody'><span ng-repeat='antonym in verbAntonym'>{{antonym}}, </span></td>
             </tr>
             <tr class='adverb'>
-              <td>Adverb</td>
+              <td>
+                <a href="http://en.wikipedia.org/wiki/Adverb">
+                  Adverb<br><span class="partOfSpeechInfo">For more on Adverbs, <br>click here</span>
+                </a>
+              </td>
               <td class='thesBody'><span ng-repeat='synonym in adverbSynonym'>{{synonym}}, </span></td>
               <td class='thesBody'><span ng-repeat='antonym in adverbAntonym'>{{antonym}}, </span></td>
             </tr>
             <tr class='adjective'>
-              <td>Adjective</td>
+              <td>
+                <a href="http://en.wikipedia.org/wiki/Adjectives">
+                  Adjective<br><span class="partOfSpeechInfo">For more on Adjectives, <br>click here</span>
+                </a>
+              </td>
               <td class='thesBody'><span ng-repeat='synonym in adjectiveSynonym'>{{synonym}}, </span></td>
               <td class='thesBody'><span ng-repeat='antonym in adjectiveAntonym'>{{antonym}}, </span></td>
             </tr>
           </table>
-
         </div>
       </div>
-
     </section>
     <footer>&copy 2014 Emmanuel Isaac</footer>
     <script type="text/javascript" src='scripts/myScripts/app.js'></script>

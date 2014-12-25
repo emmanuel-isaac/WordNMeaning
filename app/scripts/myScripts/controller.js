@@ -60,6 +60,7 @@ appModule.controller('definitionAndThesaurusController', ['$scope', 'sendDefinit
     sendDefinitionRequest(angular.lowercase(scope.query)).
     success(function (response) {
       scope.wordResponses = response;
+      scope.definitionTitle = angular.uppercase(response[0].word);
       $('img').hide();
       $('.Definition').show();
       $('.Thesaurus').show();

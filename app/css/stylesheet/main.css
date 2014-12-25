@@ -5,7 +5,7 @@ html {
 }
 
 body {
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   min-height: 100%;
   position: relative;
@@ -24,8 +24,9 @@ header {
   color: hsl(30, 75%, 30%);
 }
 
-h3 {
+dt {
   margin-top: 2px;
+  margin-bottom: 10px;
 }
 
 #container {
@@ -65,10 +66,20 @@ input {
   text-align: left;
 }
 
-.attribution {
+.attribution,
+.partOfSpeechInfo {
   font-style: italic;
   color: green;
   font-size: .75em;
+}
+
+td a:hover {
+  text-decoration: none;
+  color: rgb(255, 0, 100);
+}
+
+td a span:hover {
+  color: rgb(255, 0, 100);
 }
 
 input {
