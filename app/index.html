@@ -19,7 +19,7 @@
     <section ng-controller='definitionAndThesaurusController' >
       <form>
         <label for="inputBox">Enter Word Here:</label><br>
-        <input type='text' id='inputBox' ng-model='query'><br>
+        <input type='text' placeholder='Enter Word Here' id='inputBox' ng-model='query'><br>
         <button ng-click='search()'>Definition--Thesaurus</button>
         <p class='alert'>Please, enter a word</p>
         <p class='responseAlert'>Word not in database || Network error</p>
@@ -27,6 +27,7 @@
       <div id='container'>
         <div class="Definition">
           <dl>
+            
             <dt ng-bind='definitionTitle'></dt>
             <dd ng-repeat='wordResponse in wordResponses' class='definitions'>
               <p>

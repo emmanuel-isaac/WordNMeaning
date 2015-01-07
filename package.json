@@ -29,5 +29,8 @@
     "karma": "^0.12.28",
     "karma-chrome-launcher": "^0.1.7",
     "karma-jasmine": "^0.3.2"
+  },
+  "dependencies": {
+    "express": "^4.10.6"
   }
 }
